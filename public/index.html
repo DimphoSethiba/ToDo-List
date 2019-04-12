@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset = "utf-8">
+		<title>ToDoList App</title>
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
+		<link href = "/styles.css" rel = "stylesheet" type = "text/css"/>
+
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet'/>
+		
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'/>
+	</head>
+	</head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<body onload ="showTasks();">
+
+		
+		<div class="content" >
+        <div class="header" style="padding:10px 5px;">
+		
+			<h1 id = "title">T'ings You Gotta Do</h1>
+		
+		</div>
+		
+			<div class="body"  style="padding:40px 50px;">
+          	<form role="form">
+            <div class="form-group">
+					<div id ="enterTask">
+						<input type="text" class="form-control" id="todoInput" placeholder="e.g:Practice ES6">
+					</div>
+					<br/>
+					<div id= "showbuttons">
+						<button onclick="addTask();"  id="btnAddTask"  >Add Task</button>
+
+						<button onclick="deleteAllTasks();" id="btnDisplayTask">Delete All Tasks</button>
+					</div>
+
+					<p id="display"></p><br/>
+			</div>	
+			</form>
+			</div>
+		<div class="footer">
+         
+          
+        </div>
+
+		</div>
+	<script type ="text/javascript">
+		function updateTask(){
+			 fetch(`http://localhost:3000/todoApi/tasks`)
+			.then(res => res.json())
+			.then(res => res.map(tasks => tasks.task_name))
+			.then(taskName => document.getElementById('display').innerHTML = taskName);
+		}
+
+		function addTask(){
+			const myTask = {};
+			myTask.task_name = document.getElementById('todoInput').value;
+
+			const options ={
+				method:'POST',
+				body:JSON.stringify(myTask),
+				headers:{
+					'Content-type':'application/json'
+				}
+			};
+
+			fetch(`http://localhost:3000/todoApi/tasks`, options)
+			.then(res => res.json())
+			.then(res => console.log(res));
+			
+		}
+
+		function deleteTask(id){
+			const myTask = {};
+			myTask._id = id;
+			const options ={
+				method:'DELETE'
+			};
+
+			fetch(`http://localhost:3000/todoApi/tasks/` + id , options)
+			.then(res => res.json())
+			.then(res => console.log(res));
+			
+		}
+
+		function deleteAllTasks(){
+			
+			const options ={
+				method:'DELETE'
+			};
+
+			fetch(`http://localhost:3000/todoApi/tasks` , options)
+			.then(res => res.json())
+			.then(res => console.log(res));
+			
+		}
+
+		function showTasks(){
+			fetch(`http://localhost:3000/todoApi/tasks`)
+			.then((res) => res.json())
+			.then((data) => {
+				let outputTasks = "";
+				data.forEach(function(todotask){
+				  outputTasks += `
+				  	<p><button onclick = "deleteTask('${todotask._id}'); showTasks()"><i class = "fa fa-close"></i></button>${todotask.task_name}</p>
+				  	`;
+				  	
+				});
+				document.getElementById('display').innerHTML = outputTasks;
+			});
+		}
+	</script>
+	
+	</div>
+	</body>
+
+</html>

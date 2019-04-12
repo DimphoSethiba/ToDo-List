@@ -1,0 +1,97 @@
+body{ 
+	 background-image: url("black-and-white.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+
+.header{
+      color:white !important;
+      text-align: center; 
+      background-color:rgba(255, 255, 255,1);
+      border-top-right-radius: 15px;
+      border-top-left-radius: 15px;
+  }
+
+.footer {
+	 background-color:rgb(40, 148, 164,0.5);
+}
+ #title{
+  	font-size: 70px;
+  	font-style: bold;
+  	font-family: Satisfy;
+  	color:black;
+
+  }
+
+.content{
+	
+	background-color:rgba(0, 0, 0,0.8);
+	color:white;
+	font-size: 16px;
+	margin-left: 200px;
+	margin-right: 200px;
+	margin-top: 50px;
+	width:21cm;
+	height: 29.7cm;
+	border-radius:15px 15px;
+}
+#showbuttons{
+	text-align: center;
+	 width:100%;
+}
+
+#container p {
+	padding-left: 30px;
+}
+
+#enterTask{
+	width:85%;
+	text-align: center;
+	height: 25px;
+}
+#display{
+	margin-left: 5px;
+	font-size: 24px;
+	padding:5px;
+	font-style: normal;
+    font-family:Roboto;
+    font-size:20px;
+	
+}
+p button {
+	border-style: none;
+	border-radius: 25px;
+	padding:3px;
+	background-color:rgba(0, 0, 0, 0.8)
+;
+	
+	color:white;
+	font-size: 24px;
+	
+}
+#showbuttons button{
+	border-style: none;
+	
+	font-weight: bold;
+	border-radius: 5px;
+	padding:4px;
+	background-color:rgba(255, 255, 255,1);
+
+width:20%;
+	font-family: Satisfy;
+	color:black;
+	font-size: 20px;
+	font-weight: 5px;
+}
+
+
+
+
